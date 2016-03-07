@@ -93,10 +93,10 @@ end
 HandImage = ismember(labeledImage, handIndex);
 
 %Kivágjuk, hogy csak a kéz legyen a képen
-HandImage = imcrop(I, st(handIndex).BoundingBox);
+SubHandImage = imcrop(I, st(handIndex).BoundingBox);
 figure(1)
 subplot(2,2,4)
-imshow(HandImage);
+imshow(SubHandImage);
 
 
 
