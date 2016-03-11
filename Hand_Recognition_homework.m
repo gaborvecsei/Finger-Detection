@@ -3,11 +3,37 @@ close all;  %Minden bezárása
 clear;  %Meglév? változók "törlése"
 workspace;  %WorkSpace jön el? a program indítása után
 
-%Kép beolvasása
-[filename, pathname] = ...
+%**************WEBCAM STUFF*****************
+
+%Információk az elérhet? képrögzít?kr?l
+vidInfo = imaqhwinfo;
+%Kamera objektum létrehozása
+vid = videoinput('winvideo', 1);
+%El?nézeti ablak megnyílik
+preview(vid);
+
+%Kérdés - Válasz annak érdekében, hogy csinálunk egy képet, vagy pedig
+%betöltünk egyet a gépr?l
+message = sprintf('Would you like to take a picture?');
+reply = questdlg(message, 'Capture Image', 'Yes', 'No', 'Yes');
+%Választás leellen?rzése
+if strcmpi(reply, 'Yes')
+    %Ha Igen akkor lövünk egy képet
+    imgFromCam = getsnapshot(vid);
+    I = imgFromCam;
+else
+    %Töröljük a kamera objektumot, hogy ne foglalja a memóriát
+    delete(vid);
+    %Kép beolvasása
+    [filename, pathname] = ...
      uigetfile({'*.jpg';'*.png';'*.tif';'*.*'},'Select an Image file');
-fullFileName = fullfile(pathname, filename);
-I = imread(fullFileName);
+    fullFileName = fullfile(pathname, filename);
+    I = imread(fullFileName);
+end
+%mindenképp töröljük az objektumot (így bezáródik a preview ablak is)
+delete(vid);
+
+%*******************************************
 
 figure(1)
 subplot(2,2,1)
