@@ -33,12 +33,16 @@ end
 %mindenképp töröljük az objektumot (így bezáródik a preview ablak is)
 delete(vid);
 
+%Ezzel a két sorral lehet kivágást csinálni ha akarunk
+%[I2, rect] = imcrop(I);
+%I = I2;
+
 %*******************************************
 
 figure(1)
 subplot(2,2,1)
 imshow(I);
-
+  
 
 %A méretek felvétele
 height = size(I,1);
@@ -63,7 +67,7 @@ imshow(I_ycbcr);
 [r,c,v] = find(Cb>=77 & Cb<=127 & Cr>=133 & Cr<=173);
 numind = size(r,1);
 
-%Mark Skin Pixels
+%Megjelöli a "b?r pixeleket"
 for i=1:numind
     %Az eredeti képen beszínezzük a b?rfelületeket (szemléltetés)
     O(r(i),c(i),:) = [255 0 0];
@@ -74,9 +78,27 @@ end
 %A kis fekete helyeket a nagyban kitöltjük
 BW = imfill(BW, 'holes');
 %Eltünteti azt ami 300 pixelnél kissebb (zaj sz?rés)
-%Egy már 1024 x 1024-es képen is kicsi az esélye, hogy 300-nál kissebb
+%Egy már 1024 x 1024-es képen is kicsi az esélye, hogy 30x30 -nál kissebb
 %legyen a kéz területe
-BW = bwareaopen(BW,300);
+BW = bwareaopen(BW,900);
+
+%%%%%%%%% Csak az ujjak kellenek%%%%%%%%
+
+%Structuring element létrehozása
+se = strel('disk',60);
+%El?ször eltüntetjük az ujjakat a képr?l, mivel azok mindig kissebbek mint
+%a tenyér
+BW2 = imerode(BW, se);
+%Visszaállítjuk a tenyér méretét
+BW2 = imdilate(BW2,se);
+%Az így kapott "csak a tenyér" képet kivonjuk az eredetib?l, így megkapjuk
+%csak az ujjakat tartalmazó képet
+BW3 = imsubtract(BW, BW2);
+%30x30 pixelnél kissebb területeket eldobjuk
+BW3 = bwareaopen(BW3,900);
+BW = BW3;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 figure(1)
 subplot(2,2,3)
@@ -123,6 +145,3 @@ SubHandImage = imcrop(I, st(handIndex).BoundingBox);
 figure(1)
 subplot(2,2,4)
 imshow(SubHandImage);
-
-
-
