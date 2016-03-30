@@ -34,8 +34,8 @@ end
 delete(vid);
 
 %Ezzel a két sorral lehet kivágást csinálni ha akarunk
-%[I2, rect] = imcrop(I);
-%I = I2;
+[I2, rect] = imcrop(I);
+I = I2;
 
 %*******************************************
 
@@ -85,7 +85,7 @@ BW = bwareaopen(BW,900);
 %%%%%%%%% Csak az ujjak kellenek%%%%%%%%
 
 %Structuring element létrehozása
-se = strel('disk',60);
+se = strel('square',70);
 %El?ször eltüntetjük az ujjakat a képr?l, mivel azok mindig kissebbek mint
 %a tenyér
 BW2 = imerode(BW, se);
@@ -96,6 +96,8 @@ BW2 = imdilate(BW2,se);
 BW3 = imsubtract(BW, BW2);
 %30x30 pixelnél kissebb területeket eldobjuk
 BW3 = bwareaopen(BW3,900);
+%%Mivel csak azokat figyeljük amik nagyok a kivonás után azaz az ujjaink
+BW3 = bwareaopen(BW3,9000);
 BW = BW3;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,19 +131,47 @@ for k = 1 : length(st)
     text(centerX,centerY,num2str(k),'Color', 'b', 'FontSize', 14)
 end
 
+
+%Itt nézzük meg, hogy mit is kaptunk:
+if sortingIndexes > 0
+    if length(sortingIndexes) >= 3
+        %Ha kett?nél több ujj van akkor tuti hogy nem olló
+        title('PAPER');
+    elseif length(sortingIndexes) < 3 && length(sortingIndexes) >= 2
+        % Ha 2 akkor pedid tuti, hogy ollót mutatunk
+        title('SCRISSORS');
+    end
+else
+    %Minden egyéb esetben K? lesz
+    title('ROCK');
+end
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%NEM KELL BELE:
 %A második legnagyobb terület lesz a kéz (fej az els?)
 % Ez a lépés nem szükséges, ha csak a kezet fotózzuk
-handIndex = sortingIndexes(1);
+%handIndex = sortingIndexes(1);
 %Ha több terület van csak akkor kell tör?dni vele
-if length(sortingIndexes) > 1
-    handIndex = sortingIndexes(2);
-end
+%if length(sortingIndexes) > 1
+%    handIndex = sortingIndexes(2);
+%end
 %Eltüntetünk mindent kivéve a kezét
-[labeledImage, numberOfAreas] = bwlabel(BW);
-HandImage = ismember(labeledImage, handIndex);
+%[labeledImage, numberOfAreas] = bwlabel(BW);
+%HandImage = ismember(labeledImage, handIndex);
 
 %Kivágjuk, hogy csak a kéz legyen a képen
-SubHandImage = imcrop(I, st(handIndex).BoundingBox);
-figure(1)
-subplot(2,2,4)
-imshow(SubHandImage);
+%SubHandImage = imcrop(I, st(handIndex).BoundingBox);
+%figure(1)
+%subplot(2,2,4)
+%imshow(SubHandImage);
