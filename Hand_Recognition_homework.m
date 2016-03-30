@@ -145,33 +145,3 @@ else
     %Minden egyéb esetben K? lesz
     title('ROCK');
 end
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%NEM KELL BELE:
-%A második legnagyobb terület lesz a kéz (fej az els?)
-% Ez a lépés nem szükséges, ha csak a kezet fotózzuk
-%handIndex = sortingIndexes(1);
-%Ha több terület van csak akkor kell tör?dni vele
-%if length(sortingIndexes) > 1
-%    handIndex = sortingIndexes(2);
-%end
-%Eltüntetünk mindent kivéve a kezét
-%[labeledImage, numberOfAreas] = bwlabel(BW);
-%HandImage = ismember(labeledImage, handIndex);
-
-%Kivágjuk, hogy csak a kéz legyen a képen
-%SubHandImage = imcrop(I, st(handIndex).BoundingBox);
-%figure(1)
-%subplot(2,2,4)
-%imshow(SubHandImage);
