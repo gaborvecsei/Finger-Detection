@@ -1,3 +1,9 @@
+%Készítette:
+%Vecsei Gábor
+%vecseigabor.x@gmail.com
+%https://gaborvecsei.wordpress.com/
+%2016.04.10.
+
 clc;    %Comman képerny? tisztítása
 close all;  %Minden bezárása
 clear;  %Meglév? változók "törlése"
