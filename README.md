@@ -1,12 +1,11 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This is a simple way to detect fingers with Matlab on a picture.
 
-### What is this repository for? ###
+### How to get started with this repo? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Just download it or copy and paste to a matlab file, and than you can use it.
+Image processing toolbox is necessary.
 
 ### How do I get set up? ###
 
@@ -17,13 +16,10 @@ This README would normally document whatever steps are necessary to get your app
 * How to run tests
 * Deployment instructions
 
-### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+### About me ###
 
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Vecsei Gábor - university student
+* Budapest University of Technology and Economics
+* <vecseigabor.x@gmail.com>
+* [My personal blog](https://gaborvecsei.wordpress.com/)
