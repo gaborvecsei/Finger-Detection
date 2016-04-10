@@ -7,7 +7,6 @@ This is a simple way to detect fingers with Matlab on a picture.
 Just download it or copy and paste to a matlab file, and than you can use it.
 Image processing toolbox is necessary.
 
-
 ### About me ###
 
 * Vecsei Gábor - university student
