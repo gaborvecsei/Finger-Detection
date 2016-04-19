@@ -122,7 +122,7 @@ if sortingIndexes > 0
     if length(sortingIndexes) >= 3
         title('PAPER');
     elseif length(sortingIndexes) < 3 && length(sortingIndexes) >= 2
-        title('SCRISSORS');
+        title('SCISSORS');
     end
 else
     title('ROCK');
