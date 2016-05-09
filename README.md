@@ -18,4 +18,4 @@ You can find a more detailed writing about this topic [here](https://gaborvecsei
 * Vecsei Gábor - university student
 * Budapest University of Technology and Economics
 * [My personal blog](https://gaborvecsei.wordpress.com/)
-* <mailto = "vecseigabor.x@gmail.com">
+* <mailto:vecseigabor.x@gmail.com">
