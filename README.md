@@ -7,7 +7,7 @@ This is a simple way to detect fingers with Matlab on a picture.
 Just download it or copy and paste to a matlab file, and than you can use it.
 Image processing toolbox is necessary.
 You can find sample pictures inside the *Sample pictures* folder where you can see the results of the detection.
-You can find a more detailed writing about this topic [here](https://gaborvecsei.wordpress.com/2016/04/19/image-analysis-finger-detection/)
+You can find a more detailed writing about this topic **[here](https://gaborvecsei.wordpress.com/2016/04/19/image-analysis-finger-detection/)**
 
 ### Results ###
 ![scissors.jpg](https://bitbucket.org/repo/4dp66A/images/4196062308-scissors.jpg)
